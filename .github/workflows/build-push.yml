@@ -53,8 +53,8 @@ jobs:
       name: Build and push Angular front
       uses: docker/build-push-action@v5
       with:
-        context: .
-        file: angular/Dockerfile.gha
+        context: /angular/
+        file: Dockerfile.gha
         push: true
         tags: rg.fr-par.scw.cloud/exampolytech2024/angular:martin
     
@@ -62,7 +62,7 @@ jobs:
       name: Build and push Java back
       uses: docker/build-push-action@v5
       with:
-        context: .
-        file: java/Dockerfile.gha
+        context: /java/
+        file: Dockerfile.gha
         push: true
         tags: rg.fr-par.scw.cloud/exampolytech2024/java:martin

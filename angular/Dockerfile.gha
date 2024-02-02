@@ -4,6 +4,6 @@ LABEL maintainer="martin"
 
 COPY nginx/ /etc/nginx/
 
-COPY angular/entrypoint.sh /docker-entrypoint.d/entrypoint.sh
+COPY entrypoint.sh /docker-entrypoint.d/entrypoint.sh
 
 COPY /dist/* /usr/share/nginx/html
