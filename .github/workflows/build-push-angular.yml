@@ -47,7 +47,7 @@ jobs:
       name: Build Angular front
       uses: docker/build-push-action@v5
       with:
-        context: .
+        context: ./angular
         file: Dockerfile.gha
         push: false
         tags: rg.fr-par.scw.cloud/exampolytech2024/angular:martin

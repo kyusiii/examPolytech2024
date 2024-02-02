@@ -45,7 +45,7 @@ jobs:
       name: Build Java back
       uses: docker/build-push-action@v5
       with:
-        context: .
+        context: ./java
         file: Dockerfile.gha
         push: false
         tags: rg.fr-par.scw.cloud/exampolytech2024/java:martin
