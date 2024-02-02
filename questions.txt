@@ -1,0 +1,25 @@
+16) Qu'est ce que Docker ? A quoi cela sert-il ?
+
+Docker permet de créer des container quasi indépandant de la machine hôte.
+Chaque container est créé à partir d'une image créée à partir d'un Dockerfile.
+
+Cela permet de créer des envrionnements de developpement spécifiques à
+chaque projets, ou de déployer des applications en serie.
+
+17) Qu'est ce que la CI et la CD ? Pourquoi est-ce utile ?
+
+La CI / CD est le fait de continuellement intégrer et déployer une application.
+A partir de ce qu'on appel une pipeline, on définit les action que l'on veut faire à chaque fois qu'un commit
+est push dans un repository.
+Cela permet d'automatiser beaucoup d'action et ainsi de réduire de beaucoup les risques d'erreur.
+
+18) Qu'avez vous pensez du cours ? 
+
+C'etait un cours très dynamique et plutot fun, même si on avait déjà des connaissance en CI/CD ce cours a permis
+de solidifier ces connaissance et de mieux comprendre ce métier.
+
+19) Surprenez moi
+
+
+
+20) Créer un repo sur github et pusher votre code
