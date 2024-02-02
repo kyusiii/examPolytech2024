@@ -34,8 +34,6 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 10
-        cache: 'npm'
-        cache-dependency-path: angular/package-lock.json
     - run: npm i
     - run: npm run build
 
