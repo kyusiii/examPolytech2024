@@ -34,8 +34,13 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 10
-    - run: npm i
-    - run: npm run build
+
+    - name: Install dependencies
+      working-directory: ./angular
+      run: npm i
+    - name: Build front
+      working-directory: ./angular
+      run: npm run build
 
     -
       name: Login to registry Scaleway
