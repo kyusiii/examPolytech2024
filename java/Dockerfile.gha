@@ -1,0 +1,7 @@
+FROM eclipse-temurin:8-jre
+
+COPY target/*.jar back.jar
+
+LABEL maintainer="martin"
+
+CMD ["java", "-jar", "back.jar"]
