@@ -1,0 +1,62 @@
+services:
+  database:
+    image: mysql:8
+    container_name: mysql
+    environment:
+      - MYSQL_USER=exam
+      - MYSQL_PASSWORD=exam
+      - MYSQL_DATABASE=mysql
+      - MYSQL_ROOT_PASSWORD=exam
+    volumes:
+      - database:/var/lib/mysql
+    networks:
+      - internal_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      retries: 3
+      interval: 5s
+      timeout: 3s
+  front:
+    image: front_exam
+    build:
+      context: angular/
+      dockerfile: Dockerfile
+    container_name: front_angular
+    ports:
+      - 9999:80
+    environment:
+      - BACKEND_URL=http://localhost:8080
+    depends_on:
+      back:
+        condition: service_healthy
+        restart: true
+  back:
+    image: java_exam
+    build:
+      context: java/
+      dockerfile: Dockerfile
+    container_name: back_java
+    environment:
+      - SPRING_DATASOURCE_PASSWORD=exam
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PLATFORM=mysql
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/mysql
+    networks:
+      - internal_network
+    ports:
+      - 8080:8448
+    depends_on:
+      database:
+        condition: service_healthy
+        restart: true
+    healthcheck:
+      test: curl http://localhost:8448/actuator/health
+      retries: 3
+      interval: 5s
+      timeout: 3s
+
+networks:
+  internal_network:
+
+volumes:
+  database:
