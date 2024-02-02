@@ -35,7 +35,7 @@ jobs:
       with:
         node-version: 10
         cache: 'npm'
-    - run: cd angular/
+        cache-dependency-path: angular/package-lock.json
     - run: npm i
     - run: npm run build
 
