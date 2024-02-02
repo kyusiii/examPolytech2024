@@ -6,7 +6,11 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Java CI with Maven
+name: Build Angular
+
+defaults:
+  run:
+    working-directory: ./angular
 
 on:
   push:
@@ -21,14 +25,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up JDK 8
-      uses: actions/setup-java@v3
-      with:
-        java-version: '8'
-        distribution: 'temurin'
-        cache: maven
-    - name: Build with Maven
-      run: mvn -B package --file java/pom.xml -DskipTests
     
     - name: Use Node.js 10
       uses: actions/setup-node@v3
@@ -36,10 +32,8 @@ jobs:
         node-version: 10
 
     - name: Install dependencies
-      working-directory: ./angular
       run: npm i
     - name: Build front
-      working-directory: ./angular
       run: npm run build
 
     -
@@ -50,19 +44,10 @@ jobs:
         username: ${{ secrets.SCALEWAY_USERNAME }}
         password: ${{ secrets.SCALEWAY_PASSWORD }}
     -
-      name: Build and push Angular front
+      name: Build Angular front
       uses: docker/build-push-action@v5
       with:
-        context: /angular/
+        context: .
         file: Dockerfile.gha
-        push: true
+        push: false
         tags: rg.fr-par.scw.cloud/exampolytech2024/angular:martin
-    
-    -
-      name: Build and push Java back
-      uses: docker/build-push-action@v5
-      with:
-        context: /java/
-        file: Dockerfile.gha
-        push: true
-        tags: rg.fr-par.scw.cloud/exampolytech2024/java:martin
